@@ -7,7 +7,8 @@ function TextForm(){
     const navigate =useNavigate();
     const [data, setData] = useState({
         firstName:"",
-        lastName:""
+        lastName:"",
+        customMessage:""
       });
       const [file, setFile] = useState();
       const [fileName, setFileName] = useState("");
@@ -24,16 +25,18 @@ function TextForm(){
             formData.append("fileName", fileName);
             formData.append("firstName",data.firstName);
             formData.append("lastName",data.lastName);
+            formData.append("customMessage", data.customMessage);
             try{
                 const res = await axios.post(
-                    "http://3.84.35.229:5000/upload",
+                    "http://54.152.110.170:5000/upload",
                     formData
                 );
+                console.log(res);
                 const res1= await axios.post(
-                    "http://3.84.35.229:5000/uploadtos3",
+                    "http://54.152.110.170:5000/uploadtos3",
                     res.data
                 )
-                
+                console.log(res1);
                 // const res2= await axios.post(
                 //     "http://localhost:5000/download",
                 //     res.data
@@ -70,6 +73,13 @@ function TextForm(){
       <input type="text" value={data.lastName} placeholder="Enter Your Last Name" id="lname" name="lastName" required
         onChange={e =>{
           setData({...data,lastName:e.target.value})
+        }}
+      />
+
+    <label > Custom Message</label>
+      <input type="text"  value={data.customMessage} placeholder="Enter Your Custom Message" id="cMessage" name="customMessage" required
+        onChange={e =>{
+          setData({...data,customMessage:e.target.value})
         }}
       />
       
