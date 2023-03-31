@@ -28,15 +28,15 @@ function TextForm(){
             formData.append("customMessage", data.customMessage);
             try{
                 const res = await axios.post(
-                    "http://54.152.110.170:5000/upload",
+                    "http://54.84.63.1:5000/upload",
                     formData
                 );
-                console.log(res);
+               
                 const res1= await axios.post(
-                    "http://54.152.110.170:5000/uploadtos3",
+                    "http://54.84.63.1:5000/uploadtos3",
                     res.data
                 )
-                console.log(res1);
+               
                 // const res2= await axios.post(
                 //     "http://localhost:5000/download",
                 //     res.data
